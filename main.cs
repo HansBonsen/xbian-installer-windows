@@ -182,6 +182,8 @@ namespace installer
                 // Version has already been downloaded
                 MessageBox.Show("Version already downloaded, continuing", "XBian installer");
                 this.initRestore();
+                this.windowProgressMeter = new ProgressMeter();
+                this.windowProgressMeter.Show();
             }
             else
             {
@@ -189,13 +191,10 @@ namespace installer
                 if (dialogResult == DialogResult.Yes)
                 {
                     this.webClient.DownloadFileAsync(new Uri(this.selectedVersion.getRandomMirror()), "temp");
+                    this.windowProgressMeter = new ProgressMeter();
+                    this.windowProgressMeter.Show();
                 }
-            }
-
-  
-            this.windowProgressMeter = new ProgressMeter();
-            this.windowProgressMeter.Show();
-            
+            } 
         }
 
         public void initRestore()
